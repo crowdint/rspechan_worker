@@ -1,0 +1,6 @@
+require 'rspechan_worker/version'
+require 'async/rspechan_worker'
+require 'rspec/formatters/rspechan_formatter'
+require 'rspechan_worker/proxy_results'
+require 'rspechan_worker/logger'
+require 'tasks/rspechan_worker'
