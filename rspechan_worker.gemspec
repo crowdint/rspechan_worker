@@ -4,8 +4,8 @@ require File.expand_path('../lib/rspechan_worker/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Edwin Cruz"]
   gem.email         = ["edwin.cruz@crowdint.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Rspechan CI Server client}
+  gem.summary       = %q{This gem helps rspechan CI server to run tests in parallel across multiple nodes}
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
