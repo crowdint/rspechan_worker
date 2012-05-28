@@ -1,4 +1,4 @@
-module RespechanWorker
+module RspechanWorker
   class Namespace
     class << self
       def name
