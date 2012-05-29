@@ -16,5 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = RspechanWorker::VERSION
 
   gem.add_development_dependency('rspec')
+  gem.add_development_dependency('awesome_print')
+  gem.add_dependency('typhoeus')
   gem.add_dependency('resque')
 end
