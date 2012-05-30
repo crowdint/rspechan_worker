@@ -11,6 +11,9 @@ module RSpec
 
       def dump_failures
         super
+
+        return if RspechanWorker::ProxyResults.instance.failed_examples.empty?
+
         specs =  []
         RspechanWorker::ProxyResults.instance.failed_examples.each do |failed_spec|
           specs << {
