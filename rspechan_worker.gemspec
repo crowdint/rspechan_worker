@@ -18,5 +18,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('rspec')
   gem.add_development_dependency('awesome_print')
   gem.add_dependency('typhoeus')
-  gem.add_dependency('resque')
+  gem.add_dependency('tr8sque')
 end

@@ -2,7 +2,7 @@ module Async
   class RspechanWorker
 
     def self.queue
-      RspechanWorker::Namespace.queue
+      ::RspechanWorker::Namespace.queue
     end
 
     def self.perform *args
