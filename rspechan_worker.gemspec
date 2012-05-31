@@ -15,7 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = RspechanWorker::VERSION
 
-  gem.add_development_dependency('rspec')
+  gem.add_development_dependency('rspec', '2.0.9')
+  gem.add_development_dependency('rspec', '1.3.0')
   gem.add_development_dependency('awesome_print')
   gem.add_dependency('typhoeus')
   gem.add_dependency('tr8sque')
