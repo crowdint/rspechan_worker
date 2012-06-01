@@ -1,15 +1,23 @@
-require defined?(RSpec) ? 'rspec/core/formatters/base_formatter' : 'spec/runner/formatter/base_formatter'
-require 'json'
-
-if defined?(Spec)
-  class BaseFormatter < Spec::Runner::Formatter::BaseFormatter;end
+if defined? ::RSpec::Core::Version::STRING
+  # rspec >= 2.x
+  require 'rspec/core/formatters/base_formatter'
+  RSPEC_VERSION_2 = true
+elsif defined? ::Spec::VERSION::STRING
+  # rspec 1.x
+  require 'spec/runner/formatter/base_formatter'
+  RSPEC_VERSION_2 = false
 else
-  class BaseFormatter < RSpec::Core::Formatters::BaseFormatter;end
+  # some unsupported version. Let's assume that it is something like rspec 2.x
+  # such require may force gem activation
+  require 'rspec/core/formatters/base_formatter'
+  RSPEC_VERSION_2 = true
 end
+
+require 'json'
 
 module RSpec
   module Formatters
-    class RspechanFormatter < BaseFormatter
+    class RspechanFormatter < (RSPEC_VERSION_2 ? RSpec::Core::Formatters::BaseFormatter : Spec::Runner::Formatter::BaseFormatter)
 
       def example_started(*example_proxy)
         puts "."
