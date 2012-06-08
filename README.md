@@ -27,3 +27,12 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## Running locally
+
+Enqueue specs:
+    REDIS_HOSTNAME='localhost:6379' APPLICATION_NAME=test bundle exec rake rspechan:enqueue_specs --trace
+
+Start worker:
+    RAILS_ENV=test QUEUE=queue_test APPLICATION_NAME=test REDIS_HOSTNAME='localhost:6379' BUILD_ID=27 DUMP_FAILURES_URL='localhost'  bundle exec rake environment tr8sque:work VVERBOSE=1 --trace

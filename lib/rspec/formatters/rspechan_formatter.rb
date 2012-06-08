@@ -1,3 +1,13 @@
+begin
+  require 'rspec'
+rescue LoadError => e
+end
+
+begin
+  require 'spec'
+rescue LoadError => e
+end
+
 if defined? ::RSpec::Core::Version::STRING
   # rspec >= 2.x
   require 'rspec/core/formatters/base_formatter'
@@ -20,6 +30,7 @@ module RSpec
     class RspechanFormatter < (RSPEC_VERSION_2 ? RSpec::Core::Formatters::BaseFormatter : Spec::Runner::Formatter::BaseFormatter)
 
       def example_started(*example_proxy)
+        super
         puts "."
       end
 
@@ -47,7 +58,7 @@ module RSpec
         end
 
         url = "#{ENV['DUMP_FAILURES_URL']}/api/specs/create_failures"
-        Typhoeus::Request.post(url, :params => {:specs => specs.to_json})
+        Typhoeus::Request.post(url, :params => {:specs => specs.to_json, :build_id => ENV['BUILD_ID']})
       end
     end
   end

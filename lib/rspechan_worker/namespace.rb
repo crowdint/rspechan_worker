@@ -6,7 +6,7 @@ module RspechanWorker
       end
 
       def queue
-        "queue_" + ENV['APPLICATION_NAME'] || 'default'
+        "queue_" + (ENV['APPLICATION_NAME'] || 'default')
       end
     end
   end
