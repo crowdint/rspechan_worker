@@ -1,4 +1,3 @@
-require 'typhoeus'
 require 'rspechan_worker/version'
 require 'async/rspechan_worker'
 require 'rspec/formatters/rspechan_formatter'

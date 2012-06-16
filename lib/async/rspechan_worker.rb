@@ -25,6 +25,7 @@ module Async
       end
 
       Async::MonitorWorkers.perform ENV['BUILD_ID']
+      shutdown
     end
   end
 end
