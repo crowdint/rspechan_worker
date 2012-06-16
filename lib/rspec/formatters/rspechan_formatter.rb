@@ -31,17 +31,19 @@ module RSpec
 
       def example_started(*example_proxy)
         super
-        puts "."
+        print "."
       end
 
 
       def example_failed(*example)
         super
+        print "F"
         RspechanWorker::ProxyResults.instance.add_failed_example *example
+        dump_failures
       end
 
       def dump_failures
-        super
+        super if RSPEC_VERSION_2
 
         return if RspechanWorker::ProxyResults.instance.failed_examples.empty?
 
@@ -56,9 +58,9 @@ module RSpec
               :line => failed_spec[:line_number]
           }
         end
-
-        url = "#{ENV['DUMP_FAILURES_URL']}/api/specs/create_failures"
-        Typhoeus::Request.post(url, :params => {:specs => specs.to_json, :build_id => ENV['BUILD_ID']})
+        url = URI("#{ENV['DUMP_FAILURES_URL']}/api/specs/create_failures")
+        require 'net/http'
+        Net::HTTP.post_form(url, :specs => specs.to_json, :build_id => ENV['BUILD_ID'])
       end
     end
   end
