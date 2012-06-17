@@ -24,8 +24,8 @@ module Async
         options.run_examples
       end
 
-      Async::MonitorWorkers.perform ENV['BUILD_ID']
       shutdown
+      Async::MonitorWorkers.perform args.first['build_id']
     end
   end
 end

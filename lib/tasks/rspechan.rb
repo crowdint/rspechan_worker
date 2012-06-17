@@ -8,7 +8,8 @@ namespace :rspechan do
     files = Dir.glob('spec/**/*spec.rb')
     files.each_slice((files.size / ENV['NUM_WORKERS'].to_i) + 1) do |files|
       Tr8sque.enqueue Async::RspechanWorker, {:spec_name => files,
-                                              :app_name => ENV['APPLICATION_NAME'] || 'default'}
+                                              :app_name => ENV['APPLICATION_NAME'] || 'default',
+                                              :build_id => ENV['BUILD_ID']}
     end
   end
 
