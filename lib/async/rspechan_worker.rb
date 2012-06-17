@@ -10,7 +10,7 @@ module Async
       #$stdout = ::RspechanWorker::Logger.new('log/stdout.log')
       spec = args.first['spec_name']
       ops = [spec, '--format', 'RSpec::Formatters::RspechanFormatter'].flatten
-      if defined?(Rspec)
+      if RSPEC_VERSION_2
         RSpec::Core::Runner.run(ops)
       else
         require 'spec'
