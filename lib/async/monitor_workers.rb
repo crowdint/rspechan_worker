@@ -12,7 +12,7 @@ module Async
             worker.shutdown
           end
         end
-        RspechanWorker::Notifier.finish_build args.first
+        ::RspechanWorker::Notifier.finish_build args.first
       end
     end
   end
