@@ -7,9 +7,10 @@ namespace :rspechan do
     Tr8sque.redis = File.join(ENV['REDIS_HOSTNAME'], RspechanWorker::Namespace.name)
     files = Dir.glob('spec/**/*spec.rb')
     files.each_slice((files.size / ENV['NUM_WORKERS'].to_i) + 1) do |files|
-      Tr8sque.enqueue Async::RspechanWorker, {:spec_name => files,
+      Tr8sque.enqueue RspechanWorker::Async::RspechanWorker, {:spec_name => files,
                                               :app_name => ENV['APPLICATION_NAME'] || 'default',
-                                              :build_id => ENV['BUILD_ID']}
+                                              :build_id => ENV['BUILD_ID'],
+                                              :dump_failures_url => ENV['DUMP_FAILURES_URL']}
     end
   end
 
